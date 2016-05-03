@@ -1,0 +1,28 @@
+ PtrData generateRandomBuffer(void);	//генерирует произвольный буфер
+std::pair<std::vector<PtrData>, bool> split( PtrData);	/*разбивает буфер на фрагменты, иногда примешивая к ним некорректный. На выходе вместе
+							с фрагментами сообщается пройдёт ли буфер проверку, либо нет*/
+boost::optional<PtrData> merge(std::vector<PtrData>);	//возвращает либо объединённый буфер, либо отрицательный ответ
+
+void test() {
+std::vector<PtrData> fragments;	//содержит фрагменты, на которые разбивается буфер данных
+bool is_valid;		//корректно ли производилась дефрагментация буфера данных
+PtrData pBuffer;	//испытуемый буфер
+ptrData::element_type sendBuf;	//отправляемый в дефрагментатор буфер
+boost::optional<ptrData> returnBuf;	//заново собранный после дефрагментации буфер
+int 
+for(;;) {
+	pBuffer = generateRandomBuffer();
+	sendBuf = *pBuffer;
+	std::tie(fragments, is_valid) = split(pBuffer);
+	returnBuf = merge(fragments);
+	if(!returnBuf)
+		accept(!is_valid);
+	else {
+		accept(is_valid);
+		accept(returnBuf.get()->size() ==  sendBuf.size());
+		accept(std::equal(sendBuf.begin(), sendBuf.end(),returnBuf.get()->begin())); 
+	}
+}
+std::cout << "Тестирование коллектора прошло успешно
+}
+

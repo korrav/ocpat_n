@@ -1,0 +1,9 @@
+*.[oa]
+*~
+.cproject
+.project
+Debug/
+Release/
+.settings/
+data/
+activ_prog/
